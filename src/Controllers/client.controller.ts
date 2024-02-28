@@ -22,8 +22,10 @@ export class ClientController{
     }
 
     @Get()
-    findAll(@Res() response: Response) {
-        return response.status(200).json(this.clientService.findAllClients())
+    async findAll(@Res() response: Response) {
+        const clients = await this.clientService.findAllClients()
+
+        return response.status(200).json(clients)
     }
 
     @Put(':id')
